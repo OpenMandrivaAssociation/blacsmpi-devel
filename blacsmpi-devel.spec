@@ -1,6 +1,6 @@
 %define name	blacsmpi-devel	
 %define	version 1.1
-%define release	%mkrel 7
+%define release	%mkrel 8
 %define lib_name_orig lib%{name}
 %define lib_major 0
 %define lib_name %{lib_name_orig}%{lib_major}
@@ -14,11 +14,13 @@ Group:		Development/Other
 URL:		http://www.netlib.org/blacs/
 Source0:	%{name}-%{version}.tar.bz2
 Source1:	%{name}-patch03.tar.bz2
-Patch0: 	%name-Bmake.in.patch.bz2
-Requires:	libmpich-devel
+Patch0: 	%name-Bmake.in.patch
+# Tell it to use f95 instead of f77 due to gfortran changes
+Patch1:		blacsmpi-devel-1.1-f95.patch
+Requires:	mpich-devel
 Provides:	%{name}-%{version}
 BuildRoot:	%{_tmppath}/%{name}-buildroot
-BuildRequires:	libmpich1-devel 
+BuildRequires:	mpich-devel 
 BuildRequires:  gcc-gfortran
 
 %description
@@ -36,6 +38,7 @@ cd $RPM_BUILD_DIR
 tar xvfj %{SOURCE1}
 
 %patch0 -p 0
+%patch1 -p0 -b .f95
 
 %build
 
@@ -48,11 +51,11 @@ mkdir -p %{buildroot}/%_libdir/%{name}-%{version}
 mkdir -p %{buildroot}/%_includedir
 
 
-cp LIB/blacsCinit_MPI-LINUX-0.a %{buildroot}/usr/lib/%{name}-%{version}/blacsCinit_MPI-LINUX-0.a
-cp LIB/blacsF77init_MPI-LINUX-0.a %{buildroot}/usr/lib/%{name}-%{version}/blacsF77init_MPI-LINUX-0.a
-cp LIB/blacs_MPI-LINUX-0.a %{buildroot}/usr/lib/%{name}-%{version}/blacs_MPI-LINUX-0.a
-cp SRC/MPI/Bconfig.h %{buildroot}/usr/include/Bconfig.h
-cp SRC/MPI/Bdef.h %{buildroot}/usr/include/Bdef.h
+cp LIB/blacsCinit_MPI-LINUX-0.a %{buildroot}/%_libdir/%{name}-%{version}/blacsCinit_MPI-LINUX-0.a
+cp LIB/blacsF77init_MPI-LINUX-0.a %{buildroot}/%_libdir/%{name}-%{version}/blacsF77init_MPI-LINUX-0.a
+cp LIB/blacs_MPI-LINUX-0.a %{buildroot}/%_libdir/%{name}-%{version}/blacs_MPI-LINUX-0.a
+cp SRC/MPI/Bconfig.h %{buildroot}/%_includedir/Bconfig.h
+cp SRC/MPI/Bdef.h %{buildroot}/%_includedir/Bdef.h
 
 %post -p /sbin/ldconfig
 
