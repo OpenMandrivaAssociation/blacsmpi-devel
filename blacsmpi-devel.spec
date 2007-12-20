@@ -19,6 +19,7 @@ Patch0: 	%name-Bmake.in.patch
 Patch1:		blacsmpi-devel-1.1-f95.patch
 Requires:	mpich-devel
 Provides:	%{name}-%{version}
+BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	mpich-devel 
 BuildRequires:  gcc-gfortran
 
