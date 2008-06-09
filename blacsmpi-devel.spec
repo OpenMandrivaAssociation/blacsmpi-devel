@@ -57,9 +57,13 @@ cp LIB/blacs_MPI-LINUX-0.a %{buildroot}/%_libdir/%{name}-%{version}/blacs_MPI-LI
 cp SRC/MPI/Bconfig.h %{buildroot}/%_includedir/Bconfig.h
 cp SRC/MPI/Bdef.h %{buildroot}/%_includedir/Bdef.h
 
+%if %mdkversion < 200900
 %post -p /sbin/ldconfig
+%endif
 
+%if %mdkversion < 200900
 %postun -p /sbin/ldconfig
+%endif
 
 %clean
 rm -fr %{buildroot}
