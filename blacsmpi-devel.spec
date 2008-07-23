@@ -1,6 +1,6 @@
 %define name	blacsmpi-devel	
 %define	version 1.1
-%define release	%mkrel 8
+%define release	%mkrel 10
 %define lib_name_orig lib%{name}
 %define lib_major 0
 %define lib_name %{lib_name_orig}%{lib_major}
