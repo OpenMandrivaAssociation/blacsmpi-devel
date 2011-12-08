@@ -34,7 +34,7 @@ platforms.
 rm -rf $RPM_BUILD_ROOT
 
 %setup 
-cd $RPM_BUILD_DIR
+cd %{_builddir}
 tar xvfj %{SOURCE1}
 
 %patch0 -p 0
@@ -42,7 +42,7 @@ tar xvfj %{SOURCE1}
 
 %build
 
-cp $RPM_BUILD_DIR/%{name}-%{version}/BMAKES/Bmake.MPI-LINUX $RPM_BUILD_DIR/%{name}-%{version}/Bmake.inc
+cp %{_builddir}/%{name}-%{version}/BMAKES/Bmake.MPI-LINUX %{_builddir}/%{name}-%{version}/Bmake.inc
 
 make mpi
 
