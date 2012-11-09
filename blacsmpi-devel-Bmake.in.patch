@@ -1,0 +1,52 @@
+--- blacsmpi-devel-1.1/BMAKES/Bmake.MPI-LINUX.orig	2002-06-12 14:55:15.000000000 +0200
++++ blacsmpi-devel-1.1/BMAKES/Bmake.MPI-LINUX	2002-06-12 14:58:19.000000000 +0200
+@@ -13,7 +13,8 @@
+ #  -----------------------------
+ #  The top level BLACS directory
+ #  -----------------------------
+-   BTOPdir = $(HOME)/BLACS
++#   BTOPdir = $(HOME)/BLACS
++    BTOPdir = $(RPM_BUILD_DIR)/blacsmpi-devel-1.1
+ 
+ #  ---------------------------------------------------------------------------
+ #  The communication library your BLACS have been written for.
+@@ -47,8 +48,12 @@
+ #  -------------------------------------
+ #  Name and location of the MPI library.
+ #  -------------------------------------
+-   MPIdir = /usr/local/mpich
+-   MPILIBdir = $(MPIdir)/lib/
++#   MPIdir = /usr/local/mpich
++#   MPILIBdir = $(MPIdir)/lib/
++   MPIdir = /usr
++   MPIdev = ch_p4
++   MPIplat = LINUX
++   MPILIBdir = $(MPIdir)/lib
+    MPIINCdir = $(MPIdir)/include
+    MPILIB = $(MPILIBdir)/libmpich.a
+ 
+@@ -135,12 +140,12 @@
+ #  define -DPOINTER_64_BITS=1.)  For help on setting TRANSCOMM, you can
+ #  run BLACS/INSTALL/xtc_CsameF77 and BLACS/INSTALL/xtc_UseMpich as
+ #  explained in BLACS/INSTALL/README.
+-#   TRANSCOMM = -DUseMpich
++   TRANSCOMM = -DUseMpich
+ #
+ #  If you know that your MPI uses the same handles for fortran and C
+ #  communicators, you can replace the empty macro definition below with
+ #  the macro definition on the following line.
+-  TRANSCOMM = -DCSameF77
++#  TRANSCOMM = -DCSameF77
+ #  -----------------------------------------------------------------------
+ #  TRANSCOMM =
+ 
+@@ -195,7 +200,8 @@
+ #  optimization.  This is the F77NO_OPTFLAG.  The usage of the remaining
+ #  macros should be obvious from the names.
+ #=============================================================================
+-   F77            = g77
++#   F77            = g77
++   F77            = f77
+    F77NO_OPTFLAGS = 
+    F77FLAGS       = $(F77NO_OPTFLAGS) -O
+    F77LOADER      = $(F77)

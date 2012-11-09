@@ -1,0 +1,11 @@
+--- blacsmpi-devel-1.1/BMAKES/Bmake.MPI-LINUX	2007-05-23 18:27:58.000000000 -0700
++++ blacsmpi-devel-1.1/BMAKES/Bmake.MPI-LINUX.new	2007-05-23 18:29:36.000000000 -0700
+@@ -201,7 +201,7 @@
+ #  macros should be obvious from the names.
+ #=============================================================================
+ #   F77            = g77
+-   F77            = f77
++   F77            = f95
+    F77NO_OPTFLAGS = 
+    F77FLAGS       = $(F77NO_OPTFLAGS) -O
+    F77LOADER      = $(F77)
