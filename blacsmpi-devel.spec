@@ -11,7 +11,7 @@ Version:	%{version}
 Release:	%{release}
 License:	GPL
 Group:		Development/Other
-URL:		http://www.netlib.org/blacs/
+URL:		https://www.netlib.org/blacs/
 Source0:	%{name}-%{version}.tar.bz2
 Source1:	%{name}-patch03.tar.bz2
 Patch0: 	%name-Bmake.in.patch
